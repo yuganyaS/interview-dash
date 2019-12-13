@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import {BrowserRouter as Router, Route, Switch, Link, useRouteMatch} from 'react-router-dom';
-import Hello from './Hello';
+import Home from './Home';
+import "bootstrap/dist/css/bootstrap.min.css";
 // import Profile from './profile';
 import Dash from './dash';
 import './style.css';
@@ -41,7 +42,7 @@ class App extends Component {
     return (
       <div>
        <Router>
-            <Route path="/" exact component={Hello} />
+            <Route path="/" exact component={Home} />
             <Route path="/profile" component={Profile} />
             <Route path="/dash" component={Dash} />
             <Route path="/topics" component={Topics} />          
