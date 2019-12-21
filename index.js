@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import {BrowserRouter as Router, Route, Switch, Link, useRouteMatch} from 'react-router-dom';
-import Home from './Home';
 import "bootstrap/dist/css/bootstrap.min.css";
-// import Profile from './profile';
+import 'bootstrap/dist/js/bootstrap.js';
+import $ from 'jquery';
+import Popper from 'popper.js';
+
+
+import Home from './Pages/Home';
+import ReactHome from './Pages/React/ReactHome';
+import AngularHome from './Pages/Angular/AngularHome';
+import JavascriptHome from './Pages/Javascript/JavascriptHome';
+import Nav from './Nav';
 import Dash from './dash';
 import './style.css';
 
@@ -17,10 +25,11 @@ function Topics(){
   let path = useRouteMatch();
   console.log("path",path);
   return(
-    <div>
-      <ul>
-        <li><Link to={`${path.url}/react`}>Topic</Link></li>
-        <li><Link to={`${path.url}/angular`}>Topic name</Link></li>
+    <div> 
+      <ul className="m-4 list-group">
+        <li className="list-group-item"><Link to={`${path.url}/react`}>React</Link></li>
+        <li className="list-group-item"><Link to={`${path.url}/angular`}>Angular</Link></li>
+        <li className="list-group-item"><Link to={`${path.url}/javascript`}>Javascript</Link></li>
       </ul>
      {/* use of switch: switch is unique that render a route exclusively (ie., if we handle this without switch "/name" and "/:id" both component will render but if we use switch then only particular component render..) see below code: */}
       <Switch>
@@ -41,11 +50,13 @@ class App extends Component {
   render() {
     return (
       <div>
+      <Nav />
        <Router>
             <Route path="/" exact component={Home} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/dash" component={Dash} />
-            <Route path="/topics" component={Topics} />          
+            <Route path="/topics/react" exact component={ReactHome} />
+            <Route path="/topics/angular" exact component={AngularHome} />
+            <Route path="/topics/javascript" exact component={JavascriptHome} /> 
+            <Route path="/topics" exact component={Topics} />          
        </Router>
       </div>
     );
